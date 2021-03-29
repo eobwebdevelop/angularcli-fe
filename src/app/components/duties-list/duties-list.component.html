@@ -1,0 +1,46 @@
+<div class="list row">
+  <div class="col-md-6">
+    <h4>Duties</h4>
+    <ul class="list-group mb-3">
+      <li *ngIf="!this.duties.length" class="list-group-item">
+        Click on "Add a new Duty to create your first Duty
+      </li>
+      <li
+        class="list-group-item"
+        *ngFor="let duty of duties; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveDuty(duty, i)"
+      >
+        {{ duty.title }}
+      </li>
+    </ul>
+    <a routerLink="/add" class="btn btn-success ml-1"> Add a new Duty</a>
+    <button
+    class="m-3 btn btn-danger"
+    *ngIf="this.duties.length"
+    (click)="removeAllDuties()">
+      Remove All
+    </button>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="currentDuty">
+      <h4>Duty</h4>
+      <div>
+        <label><strong>Title:</strong></label> {{ currentDuty.title }}
+      </div>
+      <div>
+        <label><strong>Description:</strong></label>
+        {{ currentDuty.description }}
+      </div>
+
+      <a class="btn btn-warning" href="/duties/{{ currentDuty.id }}">
+        Edit
+      </a>
+    </div>
+    <div *ngIf="!currentDuty && this.duties.length">
+      <br />
+      <p>*Please click on a duty title to edit it</p>
+    </div>
+
+  </div>
+</div>
