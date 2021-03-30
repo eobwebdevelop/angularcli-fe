@@ -17,6 +17,8 @@ export class DutiesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveDuties();
+    this.duties = '';
+
   }
 
   retrieveDuties() {
